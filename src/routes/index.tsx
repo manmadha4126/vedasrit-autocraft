@@ -61,20 +61,20 @@ function Home() {
     <>
       {/* HERO — mirrors the reference composition */}
       <section className="relative overflow-hidden bg-secondary">
-        <img src={hero} alt="White performance coupe with black wheels" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover object-left" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/70 lg:to-background/40" />
+        <img src={hero} alt="White performance coupe with black wheels" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover object-[20%_center] lg:object-[0%_center]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/80 lg:via-background/10 lg:to-background/60" />
         <div className="absolute inset-0 bg-background/70 lg:hidden" />
-        <div className="relative mx-auto grid min-h-[620px] max-w-7xl items-center px-4 py-16 lg:grid-cols-2">
+        <div className="relative mx-auto grid min-h-[620px] max-w-7xl items-center px-4 py-16 lg:grid-cols-[1.05fr_1fr]">
           <div className="hidden lg:block" />
-          <div className="animate-rise lg:pl-6">
+          <div className="animate-rise">
             <div className="flex items-center gap-4">
               <span className="h-0.5 w-12 bg-primary" />
               <span className="eyebrow text-foreground">Premium Automotive Accessories</span>
               <span className="hidden h-0.5 w-12 bg-primary sm:block" />
             </div>
-            <h1 className="mt-5 font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-6xl xl:text-7xl">
+            <h1 className="mt-5 font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-6xl xl:text-[4.5rem]">
               Upgrade Your Drive
-              <span className="mt-1 block text-4xl md:text-5xl xl:text-6xl">
+              <span className="mt-1 block text-4xl md:text-5xl xl:text-[3.4rem]">
                 With Premium <span className="text-primary">Car Accessories</span>
               </span>
             </h1>
