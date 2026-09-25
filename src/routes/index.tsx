@@ -48,7 +48,11 @@ const why = [
   { icon: Headphones, t: "Customer Support", d: "Fast answers on WhatsApp & call." },
 ];
 
-const partners = ["3M", "Philips", "Osram", "Pioneer", "JBL", "70mai", "Michelin", "K&N", "Meguiar's", "Sony"];
+const partners = [
+  ["3M", "3m.com"], ["Philips", "philips.com"], ["Osram", "osram.com"], ["Pioneer", "pioneerelectronics.com"],
+  ["JBL", "jbl.com"], ["70mai", "70mai.com"], ["Michelin", "michelin.in"], ["K&N", "knfilters.com"],
+  ["Meguiar's", "meguiars.com"], ["Sony", "sony.com"],
+] as const;
 
 function Home() {
   const { data: cats } = useQuery(categoriesQuery);
@@ -217,8 +221,11 @@ function Home() {
         <div className="mt-14">
           <p className="eyebrow text-center text-muted-foreground">Trusted brands we stock</p>
           <div className="mt-6 grid grid-cols-2 border-l border-t border-border sm:grid-cols-5">
-            {partners.map((b) => (
-              <div key={b} className="grid h-20 place-items-center border-b border-r border-border font-display text-xl font-bold text-muted-foreground transition hover:text-foreground">{b}</div>
+            {partners.map(([name, domain]) => (
+              <div key={name} className="group flex h-24 flex-col items-center justify-center gap-1.5 border-b border-r border-border">
+                <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`} alt={`${name} logo`} loading="lazy" width={44} height={44} className="h-11 w-11 object-contain grayscale transition group-hover:grayscale-0" />
+                <span className="text-xs font-semibold text-muted-foreground">{name}</span>
+              </div>
             ))}
           </div>
         </div>
