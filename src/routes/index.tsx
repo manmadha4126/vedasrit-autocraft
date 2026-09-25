@@ -187,7 +187,7 @@ function Home() {
               <span className="pb-2 text-muted-foreground">/ 5</span>
             </div>
             <div className="mt-2 flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-star text-star" />)}</div>
-            <p className="mt-2 text-sm text-muted-foreground">Based on 2,400+ verified customer reviews</p>
+            <p className="mt-2 text-base text-muted-foreground">Based on 2,400+ verified customer reviews</p>
           </div>
           <div className="grid grid-cols-2 bg-ink text-ink-foreground lg:col-span-2">
             {[
