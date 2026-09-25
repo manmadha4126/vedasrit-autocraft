@@ -61,8 +61,8 @@ function Home() {
     <>
       {/* HERO — mirrors the reference composition */}
       <section className="relative overflow-hidden bg-secondary">
-        <img src={hero} alt="White performance coupe with black wheels" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover object-[20%_center] lg:object-[0%_center]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/80 lg:via-background/10 lg:to-background/60" />
+        <img src={hero} alt="White performance coupe with black wheels" width={1920} height={1024} className="absolute inset-y-0 left-0 h-full w-full object-cover object-[15%_center] lg:w-[64%] lg:object-[0%_center]" />
+        <div className="absolute inset-y-0 left-0 hidden w-[64%] bg-gradient-to-r from-transparent via-transparent to-secondary lg:block" />
         <div className="absolute inset-0 bg-background/70 lg:hidden" />
         <div className="relative mx-auto grid min-h-[620px] max-w-7xl items-center px-4 py-16 lg:grid-cols-[1.05fr_1fr]">
           <div className="hidden lg:block" />
