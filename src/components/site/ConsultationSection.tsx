@@ -40,7 +40,7 @@ export function ConsultationSection() {
     setBusy(true);
     const { error } = await supabase.from("consultations").insert(r.data);
     setBusy(false);
-    if (error) return toast.error("Could not send your request. Please try again.");
+    if (error) { toast.error("Could not send your request. Please try again."); return; }
     setDone(f);
     setF(empty);
   };

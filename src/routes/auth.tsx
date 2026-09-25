@@ -7,9 +7,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({
-    redirect: typeof s.redirect === "string" && s.redirect.startsWith("/") && !s.redirect.startsWith("//") ? s.redirect : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): { redirect?: string | undefined } => {
+    const r = s["redirect"];
+    return typeof r === "string" && r.startsWith("/") && !r.startsWith("//") ? { redirect: r } : {};
+  },
   head: () => ({
     meta: [
       { title: "Sign in or Register — Autoluxe" },
@@ -51,7 +52,7 @@ function AuthPage() {
     try {
       if (mode === "up") {
         const r = signupSchema.safeParse(f);
-        if (!r.success) throw new Error(r.error.issues[0].message);
+        if (!r.success) throw new Error(r.error.issues[0]?.message ?? "Invalid details");
         const { data, error } = await supabase.auth.signUp({
           email: r.data.email,
           password: r.data.password,

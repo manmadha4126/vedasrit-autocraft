@@ -7,8 +7,8 @@ import { z } from "zod";
 type CartLine = { id: string; name: string; qty: number };
 
 function publicDb() {
-  const url = process.env.SUPABASE_URL!;
-  const key = process.env.SUPABASE_PUBLISHABLE_KEY!;
+  const url = process.env['SUPABASE_URL']!;
+  const key = process.env['SUPABASE_PUBLISHABLE_KEY']!;
   return createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false, storage: undefined },
     global: {
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const apiKey = process.env.LOVABLE_API_KEY;
+        const apiKey = process.env['LOVABLE_API_KEY'];
         if (!apiKey) return new Response("AI is not configured", { status: 500 });
         let body: { messages: UIMessage[]; cart?: CartLine[] };
         try {

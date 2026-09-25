@@ -147,14 +147,14 @@ function ReviewsBlock({ productId, reviews }: { productId: string; reviews: { id
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-    if (text.trim().length < 5) return toast.error("Please write a few words");
+    if (text.trim().length < 5) { toast.error("Please write a few words"); return; }
     setBusy(true);
     const { error } = await supabase.from("reviews").insert({
       user_id: user.id, product_id: productId, rating, review: text.trim().slice(0, 1000), car: car.trim().slice(0, 60),
       author_name: profile?.name || user.email?.split("@")[0] || "Customer",
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setText(""); setCar("");
     toast.success("Thanks! Your review will appear after approval.");
     qc.invalidateQueries({ queryKey: ["reviews", productId] });

@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/lib/auth";
 import { carBrandsQuery, categoriesQuery, formatPrice, productImage, productsQuery, settingsQuery, type Product } from "@/lib/catalog";
 import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [{ title: "Admin Dashboard — Autoluxe" }, { name: "robots", content: "noindex" }] }),
@@ -83,8 +84,12 @@ function ProductsAdmin() {
 
   const save = async () => {
     if (!d) return;
-    if (!d.name.trim() || !(Number(d.price) >= 0) || d.price === "") return toast.error("Name and price are required");
-    const specifications = Object.fromEntries(d.specs.split("\n").map((l) => l.split(":")).filter((x) => x.length >= 2 && x[0].trim()).map(([k, ...v]) => [k.trim(), v.join(":").trim()]));
+    if (!d.name.trim() || !(Number(d.price) >= 0) || d.price === "") { toast.error("Name and price are required"); return; }
+    const specifications: Record<string, string> = {};
+    for (const line of d.specs.split("\n")) {
+      const i = line.indexOf(":");
+      if (i > 0) specifications[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    }
     const row = {
       name: d.name.trim(), description: d.description.trim(), category_slug: d.category_slug, subcategory: d.subcategory.trim(), brand: d.brand.trim(),
       price: Number(d.price), images: d.images, compatible_brands: d.compatible_brands, compatible_models: d.compatible_models, stock_status: d.stock_status,
@@ -93,7 +98,7 @@ function ProductsAdmin() {
     setBusy(true);
     const { error } = d.id ? await supabase.from("products").update(row).eq("id", d.id) : await supabase.from("products").insert(row);
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Product saved");
     setD(null);
     qc.invalidateQueries({ queryKey: ["products"] });
@@ -102,7 +107,7 @@ function ProductsAdmin() {
   const del = async (id: string) => {
     if (!confirm("Delete this product?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     qc.invalidateQueries({ queryKey: ["products"] });
   };
 
@@ -212,20 +217,20 @@ function CategoriesAdmin() {
     const slug = (n.slug || n.name).toLowerCase().trim().replace(/[^a-z0-9]+/g, "-");
     if (!n.name.trim()) return;
     const { error } = await supabase.from("categories").insert({ name: n.name.trim(), slug, description: n.description, subcategories: n.subs.split(",").map((s) => s.trim()).filter(Boolean), sort_order: (cats?.length ?? 0) + 1 });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setN({ name: "", slug: "", description: "", subs: "" });
     qc.invalidateQueries({ queryKey: ["categories"] });
   };
-  const update = async (id: string, patch: Record<string, unknown>) => {
+  const update = async (id: string, patch: Database["public"]["Tables"]["categories"]["Update"]) => {
     const { error } = await supabase.from("categories").update(patch).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Saved");
     qc.invalidateQueries({ queryKey: ["categories"] });
   };
   const del = async (id: string) => {
     if (!confirm("Delete category? Products in it must be moved first.")) return;
     const { error } = await supabase.from("categories").delete().eq("id", id);
-    if (error) return toast.error("Can't delete — products still use this category");
+    if (error) { toast.error("Can't delete — products still use this category"); return; }
     qc.invalidateQueries({ queryKey: ["categories"] });
   };
   return (
@@ -260,14 +265,14 @@ function CarsAdmin() {
   const addBrand = async () => {
     if (!brand.trim()) return;
     const { error } = await supabase.from("car_brands").insert({ name: brand.trim() });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setBrand(""); refresh();
   };
   const addModel = async (brand_id: string) => {
     const name = models[brand_id]?.trim();
     if (!name) return;
     const { error } = await supabase.from("car_models").insert({ brand_id, name });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setModels({ ...models, [brand_id]: "" }); refresh();
   };
   return (
@@ -389,10 +394,10 @@ function SettingsAdmin() {
     if (data) setF({ company_name: data.company_name, about: data.about ?? "", phone: data.phone ?? "", email: data.email ?? "", whatsapp_number: data.whatsapp_number ?? "", address: data.address ?? "", office_hours: data.office_hours ?? "", map_query: data.map_query ?? "" });
   }, [data]);
   const save = async () => {
-    const wa = (f.whatsapp_number ?? "").replace(/\D/g, "");
-    if (wa.length < 8) return toast.error("Enter WhatsApp number with country code, e.g. 919876543210");
+    const wa = (f["whatsapp_number"] ?? "").replace(/\D/g, "");
+    if (wa.length < 8) { toast.error("Enter WhatsApp number with country code, e.g. 919876543210"); return; }
     const { error } = await supabase.from("site_settings").update({ ...f, whatsapp_number: wa, updated_at: new Date().toISOString() }).eq("id", 1);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Settings saved");
     qc.invalidateQueries({ queryKey: ["settings"] });
   };
@@ -402,7 +407,7 @@ function SettingsAdmin() {
       {fields.map(([k, l]) => (
         <label key={k} className="block text-xs font-semibold text-muted-foreground">{l}<input className={`${input} mt-1`} value={f[k] ?? ""} onChange={(e) => setF({ ...f, [k]: e.target.value })} /></label>
       ))}
-      <label className="block text-xs font-semibold text-muted-foreground">About company<textarea rows={4} className={`${input} mt-1`} value={f.about ?? ""} onChange={(e) => setF({ ...f, about: e.target.value })} /></label>
+      <label className="block text-xs font-semibold text-muted-foreground">About company<textarea rows={4} className={`${input} mt-1`} value={f["about"] ?? ""} onChange={(e) => setF({ ...f, about: e.target.value })} /></label>
       <button onClick={save} className="bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Save settings</button>
     </div>
   );

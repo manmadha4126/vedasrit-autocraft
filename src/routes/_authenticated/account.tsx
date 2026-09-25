@@ -32,7 +32,7 @@ function Account() {
     e.preventDefault();
     if (!user) return;
     const { error } = await supabase.from("profiles").update({ name: f.name.trim().slice(0, 100), phone: f.phone.trim().slice(0, 20), address: f.address.trim().slice(0, 300) }).eq("id", user.id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Profile saved");
     refetchProfile();
   };

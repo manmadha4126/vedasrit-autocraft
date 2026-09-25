@@ -6,26 +6,26 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { carBrandsQuery, categoriesQuery, productsQuery } from "@/lib/catalog";
 
 type Search = {
-  q?: string;
-  category?: string;
-  car?: string;
-  model?: string;
-  brand?: string;
-  rating?: number;
-  max?: number;
-  sort?: string;
+  q?: string | undefined;
+  category?: string | undefined;
+  car?: string | undefined;
+  model?: string | undefined;
+  brand?: string | undefined;
+  rating?: number | undefined;
+  max?: number | undefined;
+  sort?: string | undefined;
 };
 
 export const Route = createFileRoute("/shop")({
   validateSearch: (s: Record<string, unknown>): Search => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    category: typeof s.category === "string" ? s.category : undefined,
-    car: typeof s.car === "string" ? s.car : undefined,
-    model: typeof s.model === "string" ? s.model : undefined,
-    brand: typeof s.brand === "string" ? s.brand : undefined,
-    rating: s.rating ? Number(s.rating) : undefined,
-    max: s.max ? Number(s.max) : undefined,
-    sort: typeof s.sort === "string" ? s.sort : undefined,
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    category: typeof s["category"] === "string" ? s["category"] : undefined,
+    car: typeof s["car"] === "string" ? s["car"] : undefined,
+    model: typeof s["model"] === "string" ? s["model"] : undefined,
+    brand: typeof s["brand"] === "string" ? s["brand"] : undefined,
+    rating: s["rating"] ? Number(s["rating"]) : undefined,
+    max: s["max"] ? Number(s["max"]) : undefined,
+    sort: typeof s["sort"] === "string" ? s["sort"] : undefined,
   }),
   head: () => ({
     meta: [
