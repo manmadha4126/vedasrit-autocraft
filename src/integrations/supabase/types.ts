@@ -14,16 +14,369 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      car_brands: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      car_models: {
+        Row: {
+          brand_id: string
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          brand_id: string
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          brand_id?: string
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "car_models_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "car_brands"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          slug: string
+          sort_order: number
+          subcategories: string[]
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          slug: string
+          sort_order?: number
+          subcategories?: string[]
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          slug?: string
+          sort_order?: number
+          subcategories?: string[]
+        }
+        Relationships: []
+      }
+      consultations: {
+        Row: {
+          car_brand: string | null
+          car_model: string | null
+          created_at: string
+          email: string | null
+          id: string
+          looking_for: string | null
+          message: string | null
+          name: string
+          phone: string
+          status: string
+        }
+        Insert: {
+          car_brand?: string | null
+          car_model?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          looking_for?: string | null
+          message?: string | null
+          name: string
+          phone: string
+          status?: string
+        }
+        Update: {
+          car_brand?: string | null
+          car_model?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          looking_for?: string | null
+          message?: string | null
+          name?: string
+          phone?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_address: string
+          customer_name: string
+          customer_phone: string
+          id: string
+          items: Json
+          total: number
+          user_id: string | null
+          whatsapp_status: string
+        }
+        Insert: {
+          created_at?: string
+          customer_address: string
+          customer_name: string
+          customer_phone: string
+          id?: string
+          items?: Json
+          total?: number
+          user_id?: string | null
+          whatsapp_status?: string
+        }
+        Update: {
+          created_at?: string
+          customer_address?: string
+          customer_name?: string
+          customer_phone?: string
+          id?: string
+          items?: Json
+          total?: number
+          user_id?: string | null
+          whatsapp_status?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          brand: string | null
+          category_slug: string
+          compatible_brands: string[]
+          compatible_models: string[]
+          created_at: string
+          description: string | null
+          id: string
+          images: string[]
+          name: string
+          price: number
+          rating: number
+          specifications: Json
+          stock_status: string
+          subcategory: string | null
+          updated_at: string
+        }
+        Insert: {
+          brand?: string | null
+          category_slug: string
+          compatible_brands?: string[]
+          compatible_models?: string[]
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: string[]
+          name: string
+          price?: number
+          rating?: number
+          specifications?: Json
+          stock_status?: string
+          subcategory?: string | null
+          updated_at?: string
+        }
+        Update: {
+          brand?: string | null
+          category_slug?: string
+          compatible_brands?: string[]
+          compatible_models?: string[]
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: string[]
+          name?: string
+          price?: number
+          rating?: number
+          specifications?: Json
+          stock_status?: string
+          subcategory?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_slug_fkey"
+            columns: ["category_slug"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string | null
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          approved: boolean
+          author_name: string
+          car: string | null
+          created_at: string
+          id: string
+          product_id: string | null
+          rating: number
+          review: string
+          user_id: string | null
+        }
+        Insert: {
+          approved?: boolean
+          author_name?: string
+          car?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          rating?: number
+          review?: string
+          user_id?: string | null
+        }
+        Update: {
+          approved?: boolean
+          author_name?: string
+          car?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          rating?: number
+          review?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_settings: {
+        Row: {
+          about: string | null
+          address: string | null
+          company_name: string
+          email: string | null
+          id: number
+          map_query: string | null
+          office_hours: string | null
+          phone: string | null
+          updated_at: string
+          whatsapp_number: string | null
+        }
+        Insert: {
+          about?: string | null
+          address?: string | null
+          company_name?: string
+          email?: string | null
+          id?: number
+          map_query?: string | null
+          office_hours?: string | null
+          phone?: string | null
+          updated_at?: string
+          whatsapp_number?: string | null
+        }
+        Update: {
+          about?: string | null
+          address?: string | null
+          company_name?: string
+          email?: string | null
+          id?: number
+          map_query?: string | null
+          office_hours?: string | null
+          phone?: string | null
+          updated_at?: string
+          whatsapp_number?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +503,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
