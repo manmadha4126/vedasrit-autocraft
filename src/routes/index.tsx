@@ -223,7 +223,7 @@ function Home() {
           <div className="mt-6 grid grid-cols-2 border-l border-t border-border sm:grid-cols-5">
             {partners.map(([name, domain]) => (
               <div key={name} className="group flex h-24 flex-col items-center justify-center gap-1.5 border-b border-r border-border">
-                <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`} alt={`${name} logo`} loading="lazy" width={44} height={44} className="h-11 w-11 object-contain grayscale transition group-hover:grayscale-0" />
+                <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`} alt={`${name} logo`} loading="lazy" width={44} height={44} className="h-11 w-11 object-contain transition group-hover:scale-110" />
                 <span className="text-xs font-semibold text-muted-foreground">{name}</span>
               </div>
             ))}
