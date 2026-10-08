@@ -29,9 +29,9 @@ export const Route = createFileRoute("/shop")({
   }),
   head: () => ({
     meta: [
-      { title: "Shop Car Accessories — Autoluxe" },
+      { title: "Shop Car Accessories — Vedasrit Autocraft" },
       { name: "description", content: "Browse interior, exterior, lighting, electronics and performance accessories filtered by your car brand and model." },
-      { property: "og:title", content: "Shop Car Accessories — Autoluxe" },
+      { property: "og:title", content: "Shop Car Accessories — Vedasrit Autocraft" },
       { property: "og:description", content: "Filter accessories by car brand, model, category, price and rating." },
     ],
   }),

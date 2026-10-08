@@ -54,7 +54,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-ink-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-ink-muted sm:flex-row sm:justify-between">
-          <span>© {new Date().getFullYear()} {s?.company_name ?? "Autoluxe"}. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} {s?.company_name ?? "Vedasrit Autocraft"}. All rights reserved.</span>
           <span>Browse · Find compatible · Add to cart · Order on WhatsApp</span>
         </div>
       </div>

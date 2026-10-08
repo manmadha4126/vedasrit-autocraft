@@ -12,9 +12,9 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/product/$id")({
   head: () => ({
     meta: [
-      { title: "Product Details — Autoluxe" },
+      { title: "Product Details — Vedasrit Autocraft" },
       { name: "description", content: "Product details, specifications and car compatibility." },
-      { property: "og:title", content: "Product Details — Autoluxe" },
+      { property: "og:title", content: "Product Details — Vedasrit Autocraft" },
       { property: "og:description", content: "Check compatibility and order on WhatsApp." },
     ],
   }),

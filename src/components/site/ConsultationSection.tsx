@@ -53,7 +53,7 @@ export function ConsultationSection() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 lg:grid-cols-[1fr_1.2fr]">
         <div>
           <p className="eyebrow text-primary">Visit · Call · WhatsApp</p>
-          <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">{s?.company_name ?? "Autoluxe"}</h2>
+          <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">{s?.company_name ?? "Vedasrit Autocraft"}</h2>
           <p className="mt-4 max-w-md text-ink-muted">{s?.about}</p>
           <ul className="mt-8 space-y-4 text-sm">
             <li className="flex gap-3"><Phone className="h-5 w-5 text-primary" /><a href={`tel:${s?.phone}`}>{s?.phone}</a></li>
