@@ -3,14 +3,20 @@ import { cn } from "@/lib/utils";
 
 export function Logo({ inverted = false, className }: { inverted?: boolean; className?: string }) {
   return (
-    <Link to="/" className={cn("flex shrink-0 items-center gap-2", className)} aria-label="Autoluxe home">
-      <span className="grid h-9 w-9 place-items-center bg-primary font-display text-lg font-bold text-primary-foreground">A</span>
+    <Link to="/" className={cn("flex shrink-0 items-center gap-2", className)} aria-label="Vedasrit Autocraft home">
       <span className="leading-none">
-        <span className={cn("block font-display text-xl font-bold tracking-wide", inverted ? "text-ink-foreground" : "text-foreground")}>
-          AUTO<span className="text-primary">LUXE</span>
+        <span className={cn("block font-display text-2xl font-extrabold italic tracking-tight", inverted ? "text-ink-foreground" : "text-foreground")}>
+          VEDAS<span className="text-primary">RIT</span>
         </span>
-        <span className={cn("block text-[10px] font-semibold tracking-[0.25em]", inverted ? "text-ink-muted" : "text-muted-foreground")}>
-          CAR ACCESSORIES
+        <span className="mt-0.5 flex items-center gap-1.5">
+          <span className="h-0.5 w-3 bg-primary" />
+          <span className={cn("font-display text-sm font-bold italic tracking-[0.3em]", inverted ? "text-ink-foreground" : "text-foreground")}>
+            AUTO<span className="text-primary">CRAFT</span>
+          </span>
+          <span className="h-0.5 w-3 bg-primary" />
+        </span>
+        <span className={cn("mt-0.5 block text-[8px] font-semibold tracking-[0.2em]", inverted ? "text-ink-muted" : "text-muted-foreground")}>
+          CUSTOMIZATION · DETAILING · PERFECTION
         </span>
       </span>
     </Link>

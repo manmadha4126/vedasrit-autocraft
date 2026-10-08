@@ -48,12 +48,12 @@ export function SiteHeader() {
           </div>
         </form>
         <div className="flex items-center justify-end gap-1 sm:gap-4">
-          <div className="hidden flex-col text-xs xl:flex">
-            <a href={`tel:${s?.phone ?? ""}`} className="flex items-center gap-1.5 font-semibold hover:text-primary">
-              <Phone className="h-3.5 w-3.5 text-primary" /> {s?.phone}
+          <div className="hidden flex-col lg:flex">
+            <a href={`tel:${s?.phone?.replace(/\s/g, "") ?? ""}`} className="flex items-center gap-2 whitespace-nowrap font-display text-lg font-bold hover:text-primary">
+              <Phone className="h-5 w-5 text-primary" /> {s?.phone}
             </a>
-            <a href={`mailto:${s?.email ?? ""}`} className="flex items-center gap-1.5 text-muted-foreground hover:text-primary">
-              <Mail className="h-3.5 w-3.5 text-primary" /> {s?.email}
+            <a href={`https://wa.me/${s?.whatsapp_number ?? ""}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary">
+              <Mail className="h-3.5 w-3.5 text-primary" /> WhatsApp us
             </a>
           </div>
           <Link to={user ? "/account" : "/auth"} className="grid h-10 w-10 place-items-center border border-transparent hover:border-border" aria-label="Account">
