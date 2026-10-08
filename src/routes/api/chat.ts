@@ -25,6 +25,7 @@ function publicDb() {
 const cols = "id,name,brand,price,category_slug,subcategory,compatible_brands,compatible_models,stock_status,rating,images,description";
 
 export const Route = createFileRoute("/api/chat")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async ({ request }) => {

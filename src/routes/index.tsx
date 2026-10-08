@@ -10,6 +10,7 @@ import { ConsultationSection } from "@/components/site/ConsultationSection";
 import { categoriesQuery, categoryImage, productsQuery, reviewsQuery } from "@/lib/catalog";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Vedasrit Autocraft — Upgrade Your Drive With Premium Car Accessories" },

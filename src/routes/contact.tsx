@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ConsultationSection } from "@/components/site/ConsultationSection";
 
 export const Route = createFileRoute("/contact")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Contact & Free Consultation — Vedasrit Autocraft" },

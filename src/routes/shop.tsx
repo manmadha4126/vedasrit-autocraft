@@ -17,6 +17,7 @@ type Search = {
 };
 
 export const Route = createFileRoute("/shop")({
+  staticData: { sitemap: true },
   validateSearch: (s: Record<string, unknown>): Search => ({
     q: typeof s["q"] === "string" ? s["q"] : undefined,
     category: typeof s["category"] === "string" ? s["category"] : undefined,

@@ -9,6 +9,7 @@ import { useCart } from "@/lib/cart";
 import { compatLabel, formatPrice, productImage, type Product } from "@/lib/catalog";
 
 export const Route = createFileRoute("/connect")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "CONNECT AI — Car Accessories Assistant | Vedasrit Autocraft" },
