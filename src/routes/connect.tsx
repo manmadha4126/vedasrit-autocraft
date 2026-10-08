@@ -11,9 +11,9 @@ import { compatLabel, formatPrice, productImage, type Product } from "@/lib/cata
 export const Route = createFileRoute("/connect")({
   head: () => ({
     meta: [
-      { title: "CONNECT AI — Car Accessories Assistant | Autoluxe" },
+      { title: "CONNECT AI — Car Accessories Assistant | Vedasrit Autocraft" },
       { name: "description", content: "Tell CONNECT your car and get compatible accessory recommendations added straight to your cart." },
-      { property: "og:title", content: "CONNECT AI — Autoluxe" },
+      { property: "og:title", content: "CONNECT AI — Vedasrit Autocraft" },
       { property: "og:description", content: "AI assistant that recommends accessories that fit your car." },
     ],
   }),

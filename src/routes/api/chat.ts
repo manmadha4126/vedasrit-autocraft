@@ -54,7 +54,7 @@ export const Route = createFileRoute("/api/chat")({
           return data;
         };
 
-        const system = `You are CONNECT, the expert AI car-accessories assistant for Autoluxe, a premium car accessories store in India.
+        const system = `You are CONNECT, the expert AI car-accessories assistant for Vedasrit Autocraft, a premium car accessories store in India.
 Help customers understand their car and needs, recommend compatible accessories, explain compatibility, compare products and suggest alternatives.
 RULES:
 - ONLY recommend products returned by the search_products tool. Never invent products, prices or specs.

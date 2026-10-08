@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Autoluxe" },
-      { name: "description", content: "Terms for browsing and ordering accessories from Autoluxe." },
-      { property: "og:title", content: "Terms & Conditions — Autoluxe" },
-      { property: "og:description", content: "Ordering terms for Autoluxe." },
+      { title: "Terms & Conditions — Vedasrit Autocraft" },
+      { name: "description", content: "Terms for browsing and ordering accessories from Vedasrit Autocraft." },
+      { property: "og:title", content: "Terms & Conditions — Vedasrit Autocraft" },
+      { property: "og:description", content: "Ordering terms for Vedasrit Autocraft." },
     ],
   }),
   component: () => (

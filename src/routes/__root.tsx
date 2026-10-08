@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Autoluxe — Premium Car Accessories" },
+      { title: "Vedasrit Autocraft — Premium Car Accessories" },
       { name: "description", content: "Premium car accessories with guaranteed fit. Order on WhatsApp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -105,7 +105,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
+  errorComponent: (props) => (
+    <ErrorComponent error={props.error instanceof Error ? props.error : new Error(String(props.error))} reset={props.reset} />
+  ),
 });
 
 function RootShell({ children }: { children: ReactNode }) {

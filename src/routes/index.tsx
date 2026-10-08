@@ -12,9 +12,9 @@ import { categoriesQuery, categoryImage, productsQuery, reviewsQuery } from "@/l
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Autoluxe — Upgrade Your Drive With Premium Car Accessories" },
+      { title: "Vedasrit Autocraft — Upgrade Your Drive With Premium Car Accessories" },
       { name: "description", content: "Premium interior, exterior, lighting, electronics and performance car accessories with guaranteed fit. Ask CONNECT AI and order on WhatsApp." },
-      { property: "og:title", content: "Autoluxe — Premium Car Accessories" },
+      { property: "og:title", content: "Vedasrit Autocraft — Premium Car Accessories" },
       { property: "og:description", content: "Find accessories that perfectly fit your car and order on WhatsApp." },
     ],
   }),
@@ -234,7 +234,7 @@ function Home() {
       {/* WHY CHOOSE US */}
       <section className="border-t border-border bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-center font-display text-4xl font-bold">Why choose Autoluxe</h2>
+          <h2 className="text-center font-display text-4xl font-bold">Why choose Vedasrit Autocraft</h2>
           <div className="mt-10 grid grid-cols-2 gap-px bg-border md:grid-cols-3 lg:grid-cols-6">
             {why.map((w) => (
               <div key={w.t} className="bg-background p-6 text-center">

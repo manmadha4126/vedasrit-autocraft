@@ -13,9 +13,9 @@ export const Route = createFileRoute("/auth")({
   },
   head: () => ({
     meta: [
-      { title: "Sign in or Register — Autoluxe" },
-      { name: "description", content: "Create your Autoluxe account to save your details and order on WhatsApp." },
-      { property: "og:title", content: "Sign in — Autoluxe" },
+      { title: "Sign in or Register — Vedasrit Autocraft" },
+      { name: "description", content: "Create your Vedasrit Autocraft account to save your details and order on WhatsApp." },
+      { property: "og:title", content: "Sign in — Vedasrit Autocraft" },
       { property: "og:description", content: "Sign in to order car accessories on WhatsApp." },
     ],
   }),
