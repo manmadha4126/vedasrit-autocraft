@@ -7,6 +7,7 @@ import { formatPrice } from "@/lib/catalog";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/account")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "My Account — Vedasrit Autocraft" }, { name: "robots", content: "noindex" }] }),
   component: Account,
 });

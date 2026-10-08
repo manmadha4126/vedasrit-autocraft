@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 
 export const Route = createFileRoute("/_authenticated/admin")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "Admin Dashboard — Vedasrit Autocraft" }, { name: "robots", content: "noindex" }] }),
   component: Admin,
 });

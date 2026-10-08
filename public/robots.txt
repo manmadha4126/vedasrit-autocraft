@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://drive-gear-guide.lovable.app/sitemap.xml

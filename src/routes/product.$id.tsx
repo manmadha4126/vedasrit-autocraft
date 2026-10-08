@@ -10,6 +10,7 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/product/$id")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Product Details — Vedasrit Autocraft" },
