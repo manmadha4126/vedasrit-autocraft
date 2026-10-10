@@ -1,5 +1,6 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "vedasrit-autocraft",
+  "author": "Manmadha",
   "private": true,
   "sideEffects": false,
   "type": "module",
