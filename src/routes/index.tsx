@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import {
   ArrowRight, Armchair, Award, BadgeCheck, Bot, Car, Cpu, Gauge, Headphones, Layers, Lightbulb, MessageSquare,
   Shield, ShieldCheck, Sparkles as Spark, Star, Wrench, Zap,
@@ -55,7 +56,17 @@ const partners = [
   ["Meguiar's", "meguiars.com"], ["Sony", "sony.com"],
 ] as const;
 
+// Replace with the real Google Business "write a review" link.
+const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
+
 function Home() {
+  const [active, setActive] = useState(0);
+  const [hover, setHover] = useState<number | null>(null);
+  useEffect(() => {
+    if (hover !== null) return;
+    const t = setInterval(() => setActive((a) => (a + 1) % services.length), 2000);
+    return () => clearInterval(t);
+  }, [hover]);
   const { data: cats } = useQuery(categoriesQuery);
   const { data: products, isLoading } = useQuery(productsQuery);
   const { data: reviews } = useQuery(reviewsQuery);
@@ -110,9 +121,9 @@ function Home() {
       {/* SERVICES + CONNECT */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-14">
-          <div className="grid grid-cols-2 border-l border-t border-border sm:grid-cols-4 lg:grid-cols-8">
-            {services.map((s) => (
-              <Link key={s.t} to="/shop" search={{ category: s.c }} className="group flex flex-col items-center gap-3 border-b border-r border-border px-3 py-7 text-center hover:bg-ink hover:text-ink-foreground">
+          <div className="grid grid-cols-2 border-l border-t border-border sm:grid-cols-4 lg:grid-cols-8" onMouseLeave={() => setHover(null)}>
+            {services.map((s, i) => (
+              <Link key={s.t} to="/shop" search={{ category: s.c }} onMouseEnter={() => setHover(i)} className={`group flex flex-col items-center gap-3 border-b border-r border-border px-3 py-7 text-center transition-colors duration-500 ${(hover ?? active) === i ? "bg-ink text-ink-foreground" : ""}`}>
                 <s.icon className="h-8 w-8 text-primary" strokeWidth={1.5} />
                 <span className="text-sm font-semibold leading-tight">{s.t}</span>
               </Link>
@@ -184,7 +195,7 @@ function Home() {
 
       {/* TRUST */}
       <section className="mx-auto max-w-7xl px-4 py-20">
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-[1fr_1fr_auto]">
           <div className="border border-border p-8">
             <p className="eyebrow text-primary">Customer ratings</p>
             <div className="mt-4 flex items-end gap-3">
@@ -194,16 +205,21 @@ function Home() {
             <div className="mt-2 flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-star text-star" />)}</div>
             <p className="mt-2 text-base text-muted-foreground">Based on 2,400+ verified customer reviews</p>
           </div>
-          <div className="grid grid-cols-2 bg-ink text-ink-foreground lg:col-span-2">
+          <div className="flex flex-col items-center justify-center border border-border p-6 text-center lg:order-last">
+            <p className="eyebrow text-primary">Review us on Google</p>
+            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(GOOGLE_REVIEW_URL)}`} alt="Scan to leave a Google review" width={160} height={160} className="mt-3 h-40 w-40" />
+            <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noreferrer" className="mt-2 text-xs font-semibold hover:text-primary">Scan or tap to write a review</a>
+          </div>
+          <div className="grid grid-cols-2 border border-border sm:grid-cols-4 lg:col-span-1">
             {[
-              ["18,500+", "Customers Served"],
-              ["42,000+", "Accessories Sold"],
-              ["35+", "Car Brands Supported"],
-              ["12", "Years of Experience"],
-            ].map(([n, l], i) => (
-              <div key={l} className={`p-8 ${i % 2 ? "border-l border-ink-border" : ""} ${i > 1 ? "border-t border-ink-border" : ""}`}>
-                <p className="font-display text-5xl font-bold text-primary">{n}</p>
-                <p className="mt-1 text-sm text-ink-muted">{l}</p>
+              ["18,500+", "Customers Served", true],
+              ["42,000+", "Accessories Sold", false],
+              ["35+", "Car Brands Supported", true],
+              ["12", "Years of Experience", false],
+            ].map(([n, l, dark]) => (
+              <div key={l as string} className={`flex flex-col justify-center p-5 ${dark ? "bg-ink text-ink-foreground" : "bg-background"}`}>
+                <p className="font-display text-3xl font-bold text-primary xl:text-4xl">{n}</p>
+                <p className={`mt-1 text-xs ${dark ? "text-ink-muted" : "text-muted-foreground"}`}>{l}</p>
               </div>
             ))}
           </div>
