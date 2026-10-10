@@ -96,12 +96,15 @@ function Chat({ initial }: { initial: UIMessage[] }) {
     }
   }, [messages, cart]);
 
+  const firstScroll = useRef(true);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   useEffect(() => {
     if (status === "ready" || status === "error") localStorage.setItem(KEY, JSON.stringify(messages));
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (firstScroll.current) { firstScroll.current = false; return; }
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages, status]);
 
-  useEffect(() => { if (!busy) inputRef.current?.focus(); }, [busy]);
+  useEffect(() => { if (!busy) inputRef.current?.focus({ preventScroll: true }); }, [busy]);
 
   const send = (text: string) => {
     const t = text.trim();
