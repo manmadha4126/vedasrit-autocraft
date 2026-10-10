@@ -213,9 +213,9 @@ function Home() {
           <div className="grid grid-cols-2 border border-border sm:grid-cols-4 lg:col-span-1">
             {[
               ["18,500+", "Customers Served", true],
-              ["42,000+", "Accessories Sold", false],
+              ["42,000+", "Accessories Sold", true],
               ["35+", "Car Brands Supported", true],
-              ["12", "Years of Experience", false],
+              ["12", "Years of Experience", true],
             ].map(([n, l, dark]) => (
               <div key={l as string} className={`flex flex-col justify-center p-5 ${dark ? "bg-ink text-ink-foreground" : "bg-background"}`}>
                 <p className="font-display text-3xl font-bold text-primary xl:text-4xl">{n}</p>
