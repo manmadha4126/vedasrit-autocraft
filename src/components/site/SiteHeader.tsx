@@ -52,8 +52,8 @@ export function SiteHeader() {
             <a href={`tel:${s?.phone?.replace(/\s/g, "") ?? ""}`} className="flex items-center gap-2 whitespace-nowrap font-display text-lg font-bold hover:text-primary">
               <Phone className="h-5 w-5 text-primary" /> {s?.phone}
             </a>
-            <a href={`https://wa.me/${s?.whatsapp_number ?? ""}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary">
-              <Mail className="h-3.5 w-3.5 text-primary" /> WhatsApp us
+            <a href={`https://wa.me/${s?.whatsapp_number ?? ""}`} target="_blank" rel="noreferrer" className="mt-1 flex w-fit items-center gap-2 rounded-full border-2 border-[#25D366] px-3 py-1 text-sm font-semibold text-[#128C7E] hover:bg-[#25D366] hover:text-background">
+              <Mail className="h-4 w-4" /> WhatsApp us
             </a>
           </div>
           <Link to={user ? "/account" : "/auth"} className="grid h-10 w-10 place-items-center border border-transparent hover:border-border" aria-label="Account">
