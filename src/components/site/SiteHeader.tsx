@@ -30,20 +30,21 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 lg:gap-8">
-        <Logo />
-        <form onSubmit={submit} className="order-3 col-span-3 flex min-w-0 lg:order-none lg:col-span-1">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-3 py-2 sm:gap-4 sm:px-4 sm:py-3 lg:gap-8">
+        <Logo className="[&_img]:h-11 sm:[&_img]:h-16 md:[&_img]:h-20" />
+        <form onSubmit={submit} className="col-span-1 flex min-w-0 sm:order-3 sm:col-span-3 lg:order-none lg:col-span-1">
           <div className="flex w-full items-center border border-input bg-background focus-within:border-foreground">
-            <Search className="ml-3 h-4 w-4 shrink-0 text-muted-foreground" />
+            <Search className="ml-3 hidden h-4 w-4 shrink-0 text-muted-foreground sm:block" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search accessory, car brand, model or product type…"
-              className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm outline-none"
+              className="min-w-0 flex-1 bg-transparent px-2 py-1.5 text-xs outline-none sm:px-3 sm:py-2.5 sm:text-sm"
               aria-label="Search products"
             />
-            <button type="submit" className="bg-foreground px-5 py-2.5 text-sm font-semibold text-background hover:bg-primary">
-              Search
+            <button type="submit" aria-label="Search" className="bg-foreground px-2.5 py-1.5 text-sm font-semibold text-background hover:bg-primary sm:px-5 sm:py-2.5">
+              <Search className="h-4 w-4 sm:hidden" />
+              <span className="hidden sm:inline">Search</span>
             </button>
           </div>
         </form>
