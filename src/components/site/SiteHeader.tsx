@@ -75,7 +75,7 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
-      <nav className="hidden border-t border-border bg-muted/60 md:block">
+      <nav className="hidden border-t border-border bg-muted md:block">
         <div className="mx-auto flex max-w-7xl items-center gap-7 px-4 text-sm font-semibold">
           {nav.map((n) => (
             <Link key={n.label} to={n.to} search={"search" in n ? n.search : {}} className="border-b-2 border-transparent py-2.5 hover:border-primary hover:text-primary">
