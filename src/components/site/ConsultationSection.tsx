@@ -65,7 +65,7 @@ export function ConsultationSection() {
           {s?.map_query && (
             <iframe
               title="Store location"
-              className="mt-8 h-56 w-full border border-ink-border grayscale"
+              className="mt-8 h-56 w-full border border-ink-border"
               loading="lazy"
               src={`https://maps.google.com/maps?q=${encodeURIComponent(s.map_query)}&z=14&output=embed`}
             />
