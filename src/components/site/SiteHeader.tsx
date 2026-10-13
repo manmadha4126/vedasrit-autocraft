@@ -30,9 +30,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-3 py-2 sm:gap-4 sm:px-4 sm:py-3 lg:gap-8">
-        <Logo className="[&_img]:h-11 sm:[&_img]:h-16 md:[&_img]:h-20" />
-        <form onSubmit={submit} className="col-span-1 flex min-w-0 sm:order-3 sm:col-span-3 lg:order-none lg:col-span-1">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-3 py-1.5 sm:gap-4 sm:px-4 sm:py-2 lg:gap-6">
+        <Logo className="[&_img]:h-11 sm:[&_img]:h-14 md:[&_img]:h-16" />
+        <form onSubmit={submit} className="col-span-1 flex min-w-0 sm:order-3 sm:col-span-3 lg:order-none lg:col-span-1 lg:mx-auto lg:w-full lg:max-w-md">
           <div className="flex w-full items-center border border-input bg-background focus-within:border-foreground">
             <Search className="ml-3 hidden h-4 w-4 shrink-0 text-muted-foreground sm:block" />
             <input
@@ -49,8 +49,8 @@ export function SiteHeader() {
           </div>
         </form>
         <div className="flex items-center justify-end gap-1 sm:gap-4">
-          <div className="hidden flex-col lg:flex">
-            <a href={`tel:${s?.phone?.replace(/\s/g, "") ?? ""}`} className="flex items-center gap-2 whitespace-nowrap font-display text-lg font-bold hover:text-primary">
+          <div className="hidden items-center gap-3 lg:flex">
+            <a href={`tel:${s?.phone?.replace(/\s/g, "") ?? ""}`} className="flex items-center gap-2 whitespace-nowrap font-display text-base font-bold hover:text-primary">
               <Phone className="h-5 w-5 text-primary" /> {s?.phone}
             </a>
             <a href={`https://wa.me/${s?.whatsapp_number ?? ""}`} target="_blank" rel="noreferrer" className="mt-1.5 inline-flex w-fit items-center gap-2 rounded-full border-2 border-[#25D366] py-1 pl-1 pr-4 text-sm font-semibold leading-none text-[#128C7E] transition hover:bg-[#25D366] hover:text-background">
@@ -75,7 +75,7 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
-      <nav className="hidden border-t border-border md:block">
+      <nav className="hidden border-t border-border bg-muted/60 md:block">
         <div className="mx-auto flex max-w-7xl items-center gap-7 px-4 text-sm font-semibold">
           {nav.map((n) => (
             <Link key={n.label} to={n.to} search={"search" in n ? n.search : {}} className="border-b-2 border-transparent py-2.5 hover:border-primary hover:text-primary">
