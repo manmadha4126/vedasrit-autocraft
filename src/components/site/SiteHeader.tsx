@@ -30,7 +30,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-3 py-1.5 sm:gap-4 sm:px-4 sm:py-2 lg:gap-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-2 lg:gap-6">
         <Logo className="[&_img]:h-11 sm:[&_img]:h-14 md:[&_img]:h-16" />
         <form onSubmit={submit} className="col-span-1 flex min-w-0 sm:order-3 sm:col-span-3 lg:order-none lg:col-span-1 lg:mx-auto lg:w-full lg:max-w-xl">
           <div className="flex w-full items-center border border-input bg-background focus-within:border-foreground">
@@ -49,7 +49,7 @@ export function SiteHeader() {
           </div>
         </form>
         <div className="flex items-center justify-end gap-1 sm:gap-4">
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 sm:flex">
             <a href={`tel:${s?.phone?.replace(/\s/g, "") ?? ""}`} className="flex items-center gap-2 whitespace-nowrap font-display text-base font-bold hover:text-primary">
               <Phone className="h-5 w-5 text-primary" /> {s?.phone}
             </a>
